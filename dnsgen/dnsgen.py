@@ -216,7 +216,12 @@ def init_words(domains, wordlist, wordlen, fast):
 	if wordlist is None:
 		wordlist = pathlib.Path(__file__).parent / 'words.txt'
 	
-	WORDS = open(wordlist).read().splitlines()
+	with open(wordlist) as f:
+            #WORDS = open(wordlist).read().splitlines()
+            WORDS = ""
+            for l in f:
+                WORDS += l
+
 	if fast:
 		WORDS = WORDS[:10]
 	
